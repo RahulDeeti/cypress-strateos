@@ -1,5 +1,6 @@
-import ProjectsPage from "/home/rahuld/cypress-testing/cypress-starter-master/cypress/robots/strateos/projects/ProjectsPage";
-
+import ProjectsPage from "/home/rahuld/Cypress-Projects/cypress-code-push/cypress/robots/strateos/projects/ProjectsPage";
+import ProjectTab from "/home/rahuld/Cypress-Projects/cypress-code-push/cypress/fixtures/locators/projects_tab.json";
+import Data from "/home/rahuld/Cypress-Projects/cypress-code-push/cypress/fixtures/data/data.json";
 context("Project Creating Test", () => {
   const projObj = new ProjectsPage();
 
@@ -7,31 +8,23 @@ context("Project Creating Test", () => {
     it("login into the strateos application and create a project", () => {
       projObj.openStrateos();
       projObj.login();
-      projObj.openProjectsTab(
-       ".user-nav-bar__content-left > .subtabs > :nth-child(2) > .subtabs__tab-link"
-     );
+      projObj.openProjectsTab(ProjectTab.projects_tab);
       projObj.wait(5000);
-      projObj.createNewProject(
-       ".project-square--create-new > .project-square__contents"
-     );
+      projObj.createNewProject(ProjectTab.create_project_icon);
       projObj.enterProjectName(
-        ":nth-child(1) > .validated-input > .validated-input__input > .text-input",
-        "Test project"
+        ProjectTab.project_name_input,
+        Data.project_name
       );
-      projObj.clickOnSubmit(".btn-primary");
-      projObj.openProjectsTab(
-        ".user-nav-bar__content-left > .subtabs > :nth-child(2) > .subtabs__tab-link"
-      );
+      projObj.clickOnSubmit(ProjectTab.create_project);
+      projObj.openProjectsTab(ProjectTab.projects_tab);
       projObj.isProjectNameSame(
-        ":nth-child(2) > .project-square__contents > .project-square__header-content > .project-square__headers > .project-square__header > .highlighted > span",
-        "Test project"
+        ProjectTab.project_name_display,
+        Data.project_name
       );
-      projObj.addProjectToFavorite(
-        ":nth-child(2) > .project-square__contents > .project-square__header-content > div.project-square__favorite-icon > .project-square__favorite-icon"
-      );
+      projObj.addProjectToFavorite(ProjectTab.project_favourite_icon);
       projObj.isProjectFavorite(
-        ".project-square--hovered > .project-square__contents > .project-square__header-content > div.project-square__favorite-icon > .project-square__favorite-icon",
-        "project-square__favorite-icon--active"
+        ProjectTab.project_star,
+        ProjectTab.project_star_active_class
       );
     });
   });

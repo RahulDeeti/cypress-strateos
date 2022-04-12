@@ -1,36 +1,36 @@
-import CompoundsPage from '/home/rahuld/cypress-testing/cypress-starter-master/cypress/robots/strateos/compounds/CompoundsPage';
+import CompoundsPage from "/home/rahuld/Cypress-Projects/cypress-code-push/cypress/robots/strateos/compounds/CompoundsPage.ts";
+import CompoundTab from "fixtures/locators/compounds_tab.json";
+import Data from "fixtures/data/data.json";
 
 context('Compounds Tab Test', () => {
 const cmpObj = new CompoundsPage();
 
-    describe('Test compound creation', ()=>{
+    describe('Test compound creation', ()=> {
 
         it("login using credentials and create a new project", () => {
             cmpObj.openStrateos();
             cmpObj.login();
-            cmpObj.openCompoundsTab(":nth-child(4) > .subtabs__tab-link");
-            cmpObj.clickOnRegisterCompoundBtn('[style="position: relative;"] > .btn');
-            cmpObj.clickOnDrawStructure(
-              ":nth-child(1) > .btn > .btn__content > .compound-dropdown__button"
+            cmpObj.openCompoundsTab(CompoundTab.compounds_tab);
+            cmpObj.clickOnRegisterCompoundBtn(
+              CompoundTab.register_compound_btn
             );
-            cmpObj.registerAsPublicCompound(".toggle__label--on");
+            cmpObj.clickOnDrawStructure(CompoundTab.draw_structure_btn);
+            cmpObj.registerAsPublicCompound(CompoundTab.public_compound_toggle);
             cmpObj.enterSmileString(
-              ".validated-input__input > .text-input",
-              "CNCNCNCN"
+              CompoundTab.smile_string_input,
+              Data.smile_string_input
             );
-            cmpObj.clickOnNext(".button-group > :nth-child(1) > .btn");
-            cmpObj.wait(6000);
+            cmpObj.clickOnNext(CompoundTab.next_btn);
+            cmpObj.wait(5000);
             cmpObj.enterNickname(
-             ":nth-child(1) > .labeled-input > .text-input",
-             "NickName"
-           );
-            cmpObj.clickOnCreateCompound(
-              ".button-group > :nth-child(2) > .btn"
+              CompoundTab.compound_nickname_input,
+              Data.nickname
             );
-            cmpObj.openCompoundsTab(":nth-child(4) > .subtabs__tab-link");
+            cmpObj.clickOnCreateCompound(CompoundTab.create_compound_button);
+            cmpObj.openCompoundsTab(CompoundTab.compounds_tab);
             cmpObj.isCompoundCreated(
-              ":nth-child(1) > :nth-child(3) > .amino-table__cell-content > .tooltip-wrapper > p",
-              "NickName"
+              CompoundTab.compound_nickname_view,
+              Data.nickname
             );
         });
     });

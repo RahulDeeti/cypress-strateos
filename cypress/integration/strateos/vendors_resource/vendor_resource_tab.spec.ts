@@ -1,4 +1,7 @@
-import VendorsResourceTab from "/home/rahuld/cypress-testing/cypress-starter-master/cypress/robots/strateos/vendors_resource/VendorResourceTab";
+import VendorsResourceTab from "/home/rahuld/Cypress-Projects/cypress-code-push/cypress/robots/strateos/vendors_resource/VendorResourceTab";
+import VendorsResource from "/home/rahuld/Cypress-Projects/cypress-code-push/cypress/fixtures/locators/vendors_resource_tab.json";
+import Data from "/home/rahuld/Cypress-Projects/cypress-code-push/cypress/fixtures/data/data.json";
+
 context('Vendors Tab', () => {
 const vndResource = new VendorsResourceTab();
 
@@ -7,43 +10,39 @@ const vndResource = new VendorsResourceTab();
         it("login into the strateos application and create a resource", () => {
             vndResource.openStrateos();
             vndResource.login();
-            vndResource.clickOnMenu(".subtabs__tab-link > span");
-            vndResource.clickOnVendors(
-              ":nth-child(2) > .input-suggestions__suggestion-content > .input-suggestions__suggestion-content-text > .submenu-link__dropdown-item"
-            );
+            vndResource.clickOnMenu(VendorsResource.menu);
+            vndResource.clickOnVendors(VendorsResource.vendors_tab);
             vndResource.clickOnResourceSubtab(
-              ".page-layout__tabs > .subtabs > :nth-child(3) > .subtabs__tab-link"
+              VendorsResource.vendors_resource_subtab
             );
-            vndResource.clickOnAddResourceButton(
-              ".tx-stack__block--sm > .btn > .btn__content"
-            );
-            vndResource.enterNameOfTheResource(".text-input", "resName");
+            vndResource.clickOnAddResourceButton(VendorsResource.add_resource_btn);
+            vndResource.enterNameOfTheResource(VendorsResource.resource_name_input,Data.resource_name);
             vndResource.selectKindOfResource(
-              ":nth-child(2) > .labeled-input > .select > .select-input__container > .select-input__wrapper"
+              VendorsResource.resource_kind_dropdown
             );
             vndResource.selectChemicalStructure(
-              ":nth-child(2) > .input-suggestions__suggestion-content > .input-suggestions__suggestion-content-text"
+              VendorsResource.chemical_structure_option
             );
             vndResource.clickOnLinkCompundButton(
-              ".labeled-input > .btn > .btn__content"
+              VendorsResource.link_compound_btn
             );
-            vndResource.addLinkCompound(
-              ":nth-child(1) > :nth-child(1) > .amino-table__cell-content > .tx-checkbox > .tx-checkbox__content > .tx-checkbox__icon-container > .fa"
-            );
-            vndResource.clickOnAddButton(".create-org > .btn__content");
+            vndResource.addLinkCompound(VendorsResource.select_link_compound);
+            vndResource.clickOnAddButton(VendorsResource.add_link_compound);
             vndResource.clickKindFilterDropDown(
-              ":nth-child(1) > :nth-child(1) > .search-filter-bar-title-wrapper > .search-filter-wrapper__title > .fa"
+              VendorsResource.kind_filter_dropdown
             );
-            vndResource.selectChemicalStructure(':nth-child(1) > :nth-child(1) > .search-filter-wrapper__vertical-options > .search-filter > .radio-group > :nth-child(2) > .tx-radio__content > .tx-radio__toggle')
+            vndResource.selectChemicalStructure(
+              VendorsResource.kind_filter_chemical_structure_option
+            );
             vndResource.clickStorageConditionDropDown(
-              ":nth-child(2) > :nth-child(1) > .search-filter-bar-title-wrapper > .search-filter-wrapper__title > .fa"
+              VendorsResource.storage_condition_dropdown
             );
             vndResource.selectCold_4(
-              ":nth-child(2) > :nth-child(1) > .search-filter-wrapper__vertical-options > .search-filter > .radio-group > :nth-child(3) > .tx-radio__content > .tx-radio__toggle"
+              VendorsResource.storage_condition_cold4_option
             );
             vndResource.assertResource(
-              ":nth-child(1) > .resource-card__card",
-              "resName"
+              VendorsResource.resource_card,
+              Data.resource_name
             );
         });
     });

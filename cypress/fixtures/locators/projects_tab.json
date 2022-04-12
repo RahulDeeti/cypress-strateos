@@ -1,0 +1,10 @@
+{
+  "projects_tab" : ".user-nav-bar__content-left > .subtabs > :nth-child(2) > .subtabs__tab-link",
+  "create_project_icon": ".project-square--create-new > .project-square__contents",
+  "project_name_input": ":nth-child(1) > .validated-input > .validated-input__input > .text-input",
+  "create_project": ".create-org > .btn__content",
+  "project_name_display": ":nth-child(2) > .project-square__contents > .project-square__header-content > .project-square__headers > .project-square__header > .highlighted > span",
+  "project_favourite_icon": ":nth-child(2) > .project-square__contents > .project-square__header-content > div.project-square__favorite-icon > .project-square__favorite-icon",
+  "project_star": ".project-square--hovered > .project-square__contents > .project-square__header-content > div.project-square__favorite-icon > .project-square__favorite-icon",
+  "project_star_active_class": "project-square__favorite-icon--active"
+}
